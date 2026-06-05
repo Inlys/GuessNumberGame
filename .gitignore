@@ -1,0 +1,10 @@
+# .NET编译文件
+bin/
+obj/
+*.dll
+*.exe
+*.log
+# 前端依赖
+node_modules/
+# 配置隐私文件
+appsettings.json
