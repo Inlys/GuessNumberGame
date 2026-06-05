@@ -1,0 +1,128 @@
+/* Login Page Specific Styles */
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+}
+
+.login-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1000px;
+    align-items: center;
+}
+
+.login-card {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.login-card h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #999;
+    margin-bottom: 30px;
+    font-size: 0.95em;
+}
+
+.login-card .form-group {
+    margin-bottom: 20px;
+}
+
+.login-card label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.login-card input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.05em;
+    margin-top: 10px;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.register-link p {
+    color: #666;
+}
+
+.register-link a {
+    color: #667eea;
+    font-weight: 500;
+}
+
+.login-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-placeholder {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 60px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.large-emoji {
+    font-size: 80px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.image-placeholder p {
+    font-size: 1.2em;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .login-card {
+        padding: 30px;
+    }
+
+    .login-image {
+        display: none;
+    }
+
+    .btn-login {
+        padding: 10px;
+    }
+}

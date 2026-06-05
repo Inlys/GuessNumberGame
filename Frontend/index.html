@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字猜测游戏</title>
+    <link rel="stylesheet" href="css/common.css">
+    <style>
+        .landing-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .landing-container {
+            text-align: center;
+            background: white;
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+        }
+
+        .landing-container h1 {
+            color: #333;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .landing-container p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 12px 30px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #f0f0f0;
+        }
+
+        .user-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+        }
+
+        .user-info span {
+            margin-right: 15px;
+        }
+
+        .btn-logout {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div id="userInfo" class="user-info" style="display: none;">
+        <span id="username"></span>
+        <button class="btn-logout" onclick="logout()">登出</button>
+    </div>
+
+    <div class="landing-page">
+        <div class="landing-container">
+            <h1>🎮 数字猜测游戏</h1>
+            <p>欢迎来到数字猜测游戏！猜出1到100之间的神秘数字，挑战自己的运气和直觉。</p>
+            
+            <div id="notLoggedIn">
+                <div class="button-group">
+                    <a href="login.html" class="btn-primary">登录</a>
+                    <a href="register.html" class="btn-secondary">注册</a>
+                </div>
+            </div>
+
+            <div id="loggedIn" style="display: none;">
+                <div class="button-group">
+                    <a href="game.html" class="btn-primary">开始游戏</a>
+                    <a href="leaderboard.html" class="btn-secondary">查看排行榜</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        function initPage() {
+            const token = getToken();
+            const username = getUsername();
+            
+            if (token && username) {
+                document.getElementById('notLoggedIn').style.display = 'none';
+                document.getElementById('loggedIn').style.display = 'block';
+                document.getElementById('userInfo').style.display = 'block';
+                document.getElementById('username').textContent = `欢迎, ${username}!`;
+            } else {
+                document.getElementById('notLoggedIn').style.display = 'block';
+                document.getElementById('loggedIn').style.display = 'none';
+                document.getElementById('userInfo').style.display = 'none';
+            }
+        }
+
+        function logout() {
+            clearAuth();
+            showMessage('已登出', 'success');
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
+        }
+
+        initPage();
+    </script>
+</body>
+</html>

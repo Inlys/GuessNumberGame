@@ -1,0 +1,135 @@
+/* Register Page Specific Styles */
+.register-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px;
+}
+
+.register-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 1000px;
+    align-items: center;
+}
+
+.register-card {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.register-card h1 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #999;
+    margin-bottom: 30px;
+    font-size: 0.95em;
+}
+
+.register-card .form-group {
+    margin-bottom: 20px;
+}
+
+.register-card label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.register-card input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.register-card input:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+.register-card small {
+    display: block;
+    color: #999;
+    font-size: 0.85em;
+    margin-top: 5px;
+}
+
+.btn-register {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.05em;
+    margin-top: 10px;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.login-link p {
+    color: #666;
+}
+
+.login-link a {
+    color: #667eea;
+    font-weight: 500;
+}
+
+.register-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-placeholder {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 60px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    backdrop-filter: blur(10px);
+}
+
+.large-emoji {
+    font-size: 80px;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.image-placeholder p {
+    font-size: 1.2em;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .register-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .register-card {
+        padding: 30px;
+    }
+
+    .register-image {
+        display: none;
+    }
+
+    .btn-register {
+        padding: 10px;
+    }
+}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排行榜 - 数字猜测游戏</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/leaderboard.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">🎮 数字猜测游戏</div>
+        <div class="navbar-nav">
+            <a href="index.html">首页</a>
+            <a href="game.html">游戏</a>
+            <span id="username" class="navbar-username"></span>
+            <a href="#" onclick="logout(); return false;">登出</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="leaderboard-wrapper">
+            <div class="leaderboard-header">
+                <h1>🏆 排行榜</h1>
+                <p class="subtitle">全球玩家排名</p>
+            </div>
+
+            <div class="filter-section">
+                <button class="filter-btn active" onclick="filterLeaderboard('top')">
+                    🌟 顶级玩家
+                </button>
+                <button class="filter-btn" onclick="filterLeaderboard('recent')">
+                    📅 最近7天
+                </button>
+                <button class="filter-btn" onclick="filterLeaderboard('personal')">
+                    👤 我的排名
+                </button>
+            </div>
+
+            <div id="leaderboardContent" class="leaderboard-content">
+                <div class="loading-spinner">
+                    <span class="loading"></span>
+                    <p>加载排行榜中...</p>
+                </div>
+            </div>
+
+            <div class="leaderboard-footer">
+                <button class="btn" onclick="window.location.href='game.html'">
+                    开始游戏
+                </button>
+                <button class="btn btn-secondary" onclick="window.location.href='index.html'">
+                    返回首页
+                </button>
+            </div>
+        </div>
+
+        <div class="stats-card">
+            <h3>📊 你的统计数据</h3>
+            <div id="userStats" class="stats-grid">
+                <div class="stat-box">
+                    <span class="stat-title">总游戏</span>
+                    <span id="totalGames" class="stat-number">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-title">最高得分</span>
+                    <span id="maxScore" class="stat-number">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-title">平均得分</span>
+                    <span id="avgScore" class="stat-number">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-title">排名</span>
+                    <span id="userRank" class="stat-number">-</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/leaderboard.js"></script>
+</body>
+</html>

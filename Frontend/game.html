@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏 - 数字猜测游戏</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">🎮 数字猜测游戏</div>
+        <div class="navbar-nav">
+            <a href="index.html">首页</a>
+            <a href="leaderboard.html">排行榜</a>
+            <span id="username" class="navbar-username"></span>
+            <a href="#" onclick="logout(); return false;">登出</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="game-wrapper">
+            <div class="game-card">
+                <div class="game-header">
+                    <h1>开始游戏</h1>
+                    <p class="game-description">猜出1到100之间的数字，你有10次机会！</p>
+                </div>
+
+                <div id="gameMenu" class="game-section">
+                    <button class="btn btn-large" onclick="startNewGame()">开始新游戏</button>
+                    <button class="btn btn-secondary btn-large" onclick="loadGameHistory()">查看历史记录</button>
+                </div>
+
+                <div id="gameBoard" class="game-section" style="display: none;">
+                    <div class="game-info">
+                        <div class="info-item">
+                            <span class="label">猜测次数:</span>
+                            <span id="attemptCount" class="value">0/10</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">难度:</span>
+                            <span id="difficulty" class="value">简单</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">得分:</span>
+                            <span id="score" class="value">0</span>
+                        </div>
+                    </div>
+
+                    <div class="guess-input">
+                        <label for="guessInput">输入你的猜测 (1-100):</label>
+                        <div class="input-group">
+                            <input 
+                                type="number" 
+                                id="guessInput" 
+                                min="1" 
+                                max="100" 
+                                placeholder="输入数字..."
+                            >
+                            <button class="btn" onclick="submitGuess()" id="guessBtn">提交</button>
+                        </div>
+                    </div>
+
+                    <div class="guess-history">
+                        <h3>猜测历史</h3>
+                        <div id="historyList" class="history-list">
+                            <p class="text-muted">还没有猜测</p>
+                        </div>
+                    </div>
+
+                    <div class="feedback" id="feedback" style="display: none;"></div>
+
+                    <button class="btn btn-secondary" onclick="backToMenu()">返回菜单</button>
+                </div>
+
+                <div id="gameResult" class="game-section" style="display: none;">
+                    <div class="result-content">
+                        <h2 id="resultTitle">游戏结果</h2>
+                        <p id="resultMessage" class="result-message"></p>
+                        <div class="result-stats">
+                            <div class="stat">
+                                <span class="stat-label">总次数:</span>
+                                <span id="totalAttempts" class="stat-value">0</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-label">最终得分:</span>
+                                <span id="finalScore" class="stat-value">0</span>
+                            </div>
+                        </div>
+                        <button class="btn btn-large" onclick="startNewGame()">再玩一局</button>
+                        <button class="btn btn-secondary btn-large" onclick="backToMenu()">返回菜单</button>
+                    </div>
+                </div>
+
+                <div id="gameHistory" class="game-section" style="display: none;">
+                    <h2>游戏历史记录</h2>
+                    <div id="historyContent" class="history-content">
+                        <p class="text-muted">加载中...</p>
+                    </div>
+                    <button class="btn btn-secondary" onclick="backToMenu()">返回菜单</button>
+                </div>
+            </div>
+
+            <div class="tips-card">
+                <h3>💡 游戏提示</h3>
+                <ul>
+                    <li>根据反馈调整你的猜测</li>
+                    <li>数字太大会提示"太大"</li>
+                    <li>数字太小会提示"太小"</li>
+                    <li>一次猜对获得满分</li>
+                    <li>猜测次数越少，得分越高</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>

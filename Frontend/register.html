@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册 - 数字猜测游戏</title>
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/register.css">
+</head>
+<body>
+    <div class="register-page">
+        <div class="register-container">
+            <div class="register-card">
+                <h1>创建账户</h1>
+                <p class="subtitle">加入数字猜测游戏社区</p>
+
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="username">用户名</label>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            placeholder="输入用户名"
+                            required
+                            minlength="3"
+                            maxlength="20"
+                        >
+                        <small>3-20个字符</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">密码</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="输入密码"
+                            required
+                            minlength="6"
+                        >
+                        <small>至少6个字符</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">确认密码</label>
+                        <input 
+                            type="password" 
+                            id="confirmPassword" 
+                            name="confirmPassword" 
+                            placeholder="再次输入密码"
+                            required
+                        >
+                    </div>
+
+                    <button type="submit" class="btn btn-register" id="submitBtn">
+                        创建账户
+                    </button>
+                </form>
+
+                <div class="login-link">
+                    <p>已有账户? <a href="login.html">立即登录</a></p>
+                </div>
+            </div>
+
+            <div class="register-image">
+                <div class="image-placeholder">
+                    <span class="large-emoji">🎮</span>
+                    <p>加入我们</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        const form = document.getElementById('registerForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            // Validation
+            if (username.length < 3) {
+                showMessage('用户名至少需要3个字符', 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showMessage('密码至少需要6个字符', 'error');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showMessage('两次输入的密码不一致', 'error');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="loading"></span> 注册中...';
+
+            try {
+                const response = await apiPost('/auth/register', {
+                    username,
+                    password
+                });
+
+                showMessage('注册成功！请登录', 'success');
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1500);
+            } catch (error) {
+                showMessage(error.message, 'error');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '创建账户';
+            }
+        });
+
+        // Check if already logged in
+        if (getToken()) {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
