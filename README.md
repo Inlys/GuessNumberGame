@@ -64,3 +64,8 @@ dotnet run
 ```
 
 浏览器打开 `Frontend/index.html`展示UI (或通过简易静态服务器部署运行).
+
+---
+
+## 测试用例
+链接：https://my.feishu.cn/mindnotes/NANEbmJ0imEGDlnAdqXcWw7an1b?from=from_copylink
